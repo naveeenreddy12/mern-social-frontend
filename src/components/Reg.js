@@ -17,7 +17,7 @@ const Reg = () => {
       setMsg("All fields required");
       return;
     }
-    axios.post("http://localhost:5000/reg", data).then((res) => {
+    axios.post(`process.env.BACKEND_URL/reg`, data).then((res) => {
       setMsg(res.data);
       if (res.data === "acc created") {
         updstore({ platform: data.platform });
