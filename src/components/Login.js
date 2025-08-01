@@ -14,7 +14,7 @@ const Login = () => {
     if (!data.uid || !data.password) {
       setMsg("All fields required"); return;
     }
-    axios.post("http://localhost:5000/login", data).then((res) => {
+    axios.post(`process.env.BACKEND_URL/login`, data).then((res) => {
       if (res.data.token) {
         obj.updstore(res.data);
         navigate("/home");
