@@ -12,7 +12,7 @@ const AddPost = () => {
 
   const add = () => {
     if (!data.content.trim()) return;
-    axios.post(`http://localhost:5000/addpost`, data, {
+    axios.post(`process.env.BACKEND_URL/addpost`, data, {
       headers: { Authorization: store.token }
     }).then(() => navigate("/home"));
   };
