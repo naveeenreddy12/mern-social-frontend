@@ -14,7 +14,7 @@ const Home = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const apiUrl = `http://localhost:5000/getposts/${encodeURIComponent(store.platform)}`;
+  const apiUrl = `process.env.BACKEND_URL/getposts/${encodeURIComponent(store.platform)}`;
   const fetchPosts = () => {
     setLoading(true);
     axios.get(apiUrl, { headers: { Authorization: store.token } }).then((res) => {
@@ -39,17 +39,17 @@ const Home = () => {
   }, [store.platform]);
 
   const like = (id) => {
-    axios.get(`http://localhost:5000/like/${id}`, { headers: { Authorization: store.token } })
+    axios.get(`process.env.BACKEND_URL/like/${id}`, { headers: { Authorization: store.token } })
       .then(fetchPosts);
   };
   const share = (id) => {
-    axios.get(`http://localhost:5000/share/${id}`, { headers: { Authorization: store.token } })
+    axios.get(`process.env.BACKEND_URL/share/${id}`, { headers: { Authorization: store.token } })
       .then(fetchPosts);
   };
   const comment = (id) => {
     let c = prompt('Enter comment');
     if (c) {
-      axios.post(`http://localhost:5000/comment/${id}`, { comment: c }, { headers: { Authorization: store.token } })
+      axios.post(`process.env.BACKEND_URL/comment/${id}`, { comment: c }, { headers: { Authorization: store.token } })
         .then(fetchPosts);
     }
   };
